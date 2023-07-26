@@ -83,7 +83,11 @@ Add an HTML file called `index.html` and include the following code. <!-- Or dow
 
 ## Create OAuth client ID {: #oauth_client }
 
-Navigate to the [Google API console][google-console] and create a new project. Once ready, select
+Navigate to the [Google API console][google-console] and create a new project. 
+
+Next, navigate to **OAuth consent screen** and follow the configuration steps. Add the `".../auth/userinfo.email"` Scope.
+
+Once ready, select
 **Credentials** in the sidebar, click **Create credentials** and choose **OAuth client ID**.
 
 {% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/iC6LC1PYreTxndYmLEWN.png",
@@ -100,7 +104,7 @@ Finish by clicking create. The console will provide an OAuth client ID.
 ## Register OAuth in manifest {: #oauth_registration }
 
 Include the `"oauth2"` field in the extension manifest. Place the generated OAuth client ID under
-`"client_id"`. Include an empty string in `"scopes"` for now.
+`"client_id"`. Place the `".../auth/userinfo.email"` Scope in `"scopes"`.
 
 ```json
 {
@@ -108,7 +112,7 @@ Include the `"oauth2"` field in the extension manifest. Place the generated OAut
   ...
   "oauth2": {
     "client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
-    "scopes":[""]
+    "scopes":["https://www.googleapis.com/auth/userinfo.email"]
   },
   ...
 }
